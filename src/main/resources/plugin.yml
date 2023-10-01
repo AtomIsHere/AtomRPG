@@ -1,0 +1,7 @@
+name: $name
+version: $version
+main: com.github.atomishere.atomrpg.AtomRPG
+description: $description
+authors:
+  - AtomIsHere
+api-version: "$apiVersion"
