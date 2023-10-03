@@ -1,7 +1,10 @@
 plugins {
     `java-library`
+
     id("io.papermc.paperweight.userdev") version "1.5.5"
     id("xyz.jpenilla.run-paper") version "2.2.0"
+
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "com.github.atomishere"
@@ -45,5 +48,10 @@ tasks {
         filesMatching("plugin.yml") {
             expand(props)
         }
+    }
+
+    shadowJar {
+        isEnableRelocation = true
+        relocationPrefix = "com.github.atomishere.atomrpg.depends"
     }
 }
