@@ -23,6 +23,9 @@ dependencies {
     paperweight.paperDevBundle("1.20.2-R0.1-SNAPSHOT")
 
     implementation("com.google.inject:guice:7.0.0")
+
+    implementation("io.github.classgraph:classgraph:4.8.162")
+    implementation("io.github.toolfactory:narcissus:1.0.7")
 }
 
 tasks {
