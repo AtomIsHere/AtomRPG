@@ -29,6 +29,8 @@ dependencies {
     implementation("io.github.toolfactory:narcissus:1.0.7")
 
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
+
+    compileOnly("org.jetbrains:annotations:24.0.0")
 }
 
 tasks {
