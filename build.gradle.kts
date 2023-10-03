@@ -17,6 +17,7 @@ java {
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://repo.aikar.co/content/groups/aikar/") }
 }
 
 dependencies {
@@ -26,6 +27,8 @@ dependencies {
 
     implementation("io.github.classgraph:classgraph:4.8.162")
     implementation("io.github.toolfactory:narcissus:1.0.7")
+
+    implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
 }
 
 tasks {
