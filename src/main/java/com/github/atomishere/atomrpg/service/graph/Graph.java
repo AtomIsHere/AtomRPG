@@ -96,7 +96,7 @@ public class Graph<T> {
                 if(orphanNodes == null) {
                     orphanNodes = new ArrayList<>();
                 }
-                orphanNodes.add(node)
+                orphanNodes.add(node);
             }
         }
         return orphanNodes;
