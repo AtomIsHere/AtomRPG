@@ -28,7 +28,7 @@ public class AtomRPG extends JavaPlugin {
         commandManager.enableUnstableAPI("brigadier");
         commandManager.enableUnstableAPI("help");
 
-        AtomRPGModule module = new AtomRPGModule(this, commandManager);
+        AtomRPGModule module = new AtomRPGModule(this, commandManager, getDataFolder());
         injector = module.createInjector();
         injector.injectMembers(this);
 
