@@ -67,6 +67,8 @@ public class ServiceManager {
                 Bukkit.getServer().getPluginManager().registerEvents((Listener) service, plugin);
             }
         }
+
+        started = true;
     }
 
     public void stopServices() {
@@ -89,6 +91,8 @@ public class ServiceManager {
                 return;
             }
         }
+
+        started = false;
     }
 
     private boolean checkDependencies() {
