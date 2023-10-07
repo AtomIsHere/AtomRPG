@@ -1,6 +1,7 @@
 package com.github.atomishere.atomrpg;
 
 import co.aikar.commands.PaperCommandManager;
+import com.github.atomishere.atomrpg.player.PlayerManager;
 import com.github.atomishere.atomrpg.service.ServiceManager;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -12,6 +13,9 @@ public class AtomRPG extends JavaPlugin {
 
     @Inject
     private ServiceManager serviceManager;
+
+    @Inject
+    private PlayerManager playerManager;
 
     @Override
     public void onLoad() {
@@ -31,6 +35,8 @@ public class AtomRPG extends JavaPlugin {
         AtomRPGModule module = new AtomRPGModule(this, commandManager, getDataFolder());
         injector = module.createInjector();
         injector.injectMembers(this);
+
+        serviceManager.addService(playerManager);
 
         serviceManager.startServices();
     }
