@@ -40,7 +40,7 @@ public enum Skill {
         return maxLevel;
     }
 
-    public long xpRequiredForLevel(int level) {
+    public long xpRequiredForLevel(long level) {
         double gradient = initialXp*Math.pow(1+(percentIncrease / 100.0D), Math.floorDiv(level-1, levelsUntilIncrease));
 
         return Math.round(gradient * (level-1)+initialXp);
