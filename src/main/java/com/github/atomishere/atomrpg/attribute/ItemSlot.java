@@ -13,7 +13,9 @@ public enum ItemSlot {
     FEET(EquipmentSlot.FEET),
     LEGS(EquipmentSlot.LEGS),
     CHEST(EquipmentSlot.CHEST),
-    HEAD(EquipmentSlot.HEAD);
+    HEAD(EquipmentSlot.HEAD),
+    /* Intended to be used for adding modifiers directly to players and entities, ignored if used on an item */
+    BASE(null);
 
     @Nullable
     private final EquipmentSlot mapsTo;
