@@ -9,6 +9,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -27,7 +28,7 @@ public class PlayerManager implements Service, Listener {
     private static final Logger log = Logger.getLogger(PlayerManager.class.getName());
 
     // TODO: Move this to a config value eventually
-    private static final ImmutableMap<AtomAttribute, Double> DEFAULT_ATTRIBUTES = ImmutableMap.<AtomAttribute, Double>builder()
+    private static final ImmutableMap<AtomAttribute, Double> DEFAULT_PLAYER_ATTRIBUTES = ImmutableMap.<AtomAttribute, Double>builder()
             .put(AtomAttribute.DEFENCE, 5.0D)
             .put(AtomAttribute.STRENGTH, 10.0D)
             .put(AtomAttribute.CRIT_CHANCE, 10.0D)
@@ -103,20 +104,20 @@ public class PlayerManager implements Service, Listener {
         return Optional.of(playersData.get(player));
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerJoin(PlayerJoinEvent event) {
         UUID playerUid = event.getPlayer().getUniqueId();
 
         players.put(playerUid, new AtomPlayer(playerUid, getPlayerData(playerUid).orElseGet(() -> {
             PlayerData data = new PlayerData(playerUid);
-            DEFAULT_ATTRIBUTES.forEach(data::setBaseValue);
+            DEFAULT_PLAYER_ATTRIBUTES.forEach(data::setBaseValue);
 
             playersData.put(playerUid, data);
             return data;
         })));
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerQuit(PlayerQuitEvent event) {
         players.remove(event.getPlayer().getUniqueId());
     }
