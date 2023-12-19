@@ -20,7 +20,7 @@ public enum ItemSlot {
     @Nullable
     private final EquipmentSlot mapsTo;
 
-    ItemSlot(EquipmentSlot mapsTo) {
+    ItemSlot(@Nullable EquipmentSlot mapsTo) {
         this.mapsTo = mapsTo;
     }
 
