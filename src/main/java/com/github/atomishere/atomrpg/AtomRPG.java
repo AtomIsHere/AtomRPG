@@ -3,11 +3,16 @@ package com.github.atomishere.atomrpg;
 import co.aikar.commands.PaperCommandManager;
 import com.github.atomishere.atomrpg.player.PlayerManager;
 import com.github.atomishere.atomrpg.service.ServiceManager;
+import com.github.atomishere.atomrpg.skills.SkillManager;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.Singleton;
 import io.github.classgraph.ClassGraph;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
+@Singleton
 public class AtomRPG extends JavaPlugin {
     private Injector injector;
 
@@ -16,6 +21,8 @@ public class AtomRPG extends JavaPlugin {
 
     @Inject
     private PlayerManager playerManager;
+    @Inject
+    private SkillManager skillManager;
 
     @Override
     public void onLoad() {
@@ -37,6 +44,7 @@ public class AtomRPG extends JavaPlugin {
         injector.injectMembers(this);
 
         serviceManager.addService(playerManager);
+        serviceManager.addService(skillManager);
 
         serviceManager.startServices();
     }
@@ -46,5 +54,12 @@ public class AtomRPG extends JavaPlugin {
         serviceManager.stopServices();
 
         injector = null;
+    }
+
+    public void loadConfig(String file) {
+        File configFile = new File(getDataFolder(), file);
+        if (!configFile.exists()) {
+            saveResource(file, false);
+        }
     }
 }
